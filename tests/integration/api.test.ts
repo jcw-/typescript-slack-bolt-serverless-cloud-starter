@@ -1,4 +1,8 @@
-import { api } from "@serverless/cloud";
+import { api, data } from "@serverless/cloud";
+
+beforeAll(async () => {
+  await data.seed("tests/data.json", false);
+});
 
 test("should return users", async () => {
   const { body } = await api.get("/users").invoke();
